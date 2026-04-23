@@ -1,24 +1,22 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebasetutorial/Appstyles/app_styles.dart';
 import 'package:firebasetutorial/app/routes/app_pages.dart';
-import 'package:firebasetutorial/widgets/custom_appbar.dart';
-import 'package:firebasetutorial/widgets/custom_button.dart';
-import 'package:firebasetutorial/widgets/custom_form_field.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../../Appstyles/app_styles.dart';
 import '../../../../../widgets/constants/sizedBoxExt.dart';
-import '../controllers/login_controller.dart';
+import '../../../../../widgets/custom_appbar.dart';
+import '../../../../../widgets/custom_button.dart';
+import '../../../../../widgets/custom_form_field.dart';
+import '../controllers/signup_controller.dart';
 
-class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
-
+class SignupView extends GetView<SignupController> {
+  const SignupView({super.key});
   @override
   Widget build(BuildContext context) {
     final _formkey = GlobalKey<FormState>();
     return Scaffold(
-      appBar: CustomAppBar(title: "Login"),
+      appBar: CustomAppBar(title: "Singup"),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -38,26 +36,19 @@ class LoginView extends GetView<LoginController> {
               ),
               60.ph,
               CustomButton(
-                title: "Login",
+                title: "Signup",
                 onPressed: ()async{
                   if (_formkey.currentState!.validate()) {
-                    await controller.FirebaseLoginAccount();
+                    await controller.FirebaseCreateAccount();
                   }
                 },
               ),
               20.ph,
-              TextButton(
-                onPressed: () {Get.toNamed(Routes.SIGNUP);},
-                child: Text(
-                  "Sign Up",
-                  style: AppStyle.bodyMedium,
-                ),
-              ),
               Text("Or", style: AppStyle.headingSmall),
               TextButton(
-                onPressed: () {},
+                onPressed: () {Get.toNamed(Routes.LOGIN);},
                 child: Text(
-                  "Login with phone number",
+                  "Login",
                   style: AppStyle.headingMedium,
                 ),
               ),

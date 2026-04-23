@@ -1,20 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebasetutorial/theme/app_color.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginController extends GetxController {
+import '../../../../../theme/app_color.dart';
+
+class SignupController extends GetxController {
+  //TODO: Implement SignupController
+
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   //TODO: Implement LoginController
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
   @override
   void onInit() {
     super.onInit();
-    FirebaseLoginAccount();
+    FirebaseCreateAccount();
   }
 
   @override
@@ -27,13 +29,13 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
-  Future<void> FirebaseLoginAccount()async{
+  Future<void> FirebaseCreateAccount()async{
     try {
-     await firebaseAuth.signInWithEmailAndPassword(
+      await firebaseAuth.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
-     Get.snackbar("Success", "Account logged in successfully",backgroundColor: AppColor.green);
+      Get.snackbar("Success", "Account created successfully",backgroundColor: AppColor.green);
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
         print("Firebase Error: ${e.message}");

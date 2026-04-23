@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/auth/Signup/bindings/signup_binding.dart';
+import '../modules/auth/Signup/views/signup_view.dart';
 import '../modules/auth/login/bindings/login_binding.dart';
 import '../modules/auth/login/views/login_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -29,6 +31,11 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => LoginView(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIGNUP,
+      page: () => const SignupView(),
+      binding: SignupBinding(),
     ),
   ];
 }
